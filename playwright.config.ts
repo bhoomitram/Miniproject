@@ -5,7 +5,7 @@ export default defineConfig({
   testDir: './tests',
   reporter: [
     ['html'],
-    ['allure-playwright']
+    ['allure-playwright', {outputFolder: '../reports/allure-results'}],
   ],
   use: {
     baseURL: 'https://parabank.parasoft.com',
