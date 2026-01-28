@@ -1,0 +1,46 @@
+import { test, expect } from '@playwright/test';
+import { RegistrationPage } from '../pages/RegistrationPage';
+import { RandomDataUtil } from '../utils/randomDataGenerator';
+
+test.describe('User Registration with Random Data', () => {
+  // Run the test multiple times with different random data
+  for (let i = 0; i < 5; i++) {
+    test(`Register user with random data - Iteration ${i + 1}`, async ({ page }) => {
+      const registrationPage = new RegistrationPage(page);
+
+      // Generate random data
+      const firstName = RandomDataUtil.getFirstName();
+      const lastName = RandomDataUtil.getlastName();
+      const address = RandomDataUtil.getRandomAddress();
+      const city = RandomDataUtil.getRandomCity();
+      const state = RandomDataUtil.getRandomState();
+      const zip = RandomDataUtil.getRandomPin();
+      const phone = RandomDataUtil.getPhoneNumber();
+      const username = RandomDataUtil.getUsername();
+      const password = RandomDataUtil.getRandomPassword(12); // Generate a 12-character password
+
+      // Navigate to registration page
+      await registrationPage.goto();
+
+      // Fill personal information
+      await registrationPage.fillPersonalInfo(
+        firstName,
+        lastName,
+        address,
+        city,
+        state,
+        zip,
+        phone
+      );
+
+      // Fill login information
+      await registrationPage.fillLoginInfo(username, password);
+
+      // Click Register
+      await registrationPage.clickRegister();
+
+      // Verify registration success
+      await registrationPage.verifyRegistrationSuccess();
+    });
+  }
+});

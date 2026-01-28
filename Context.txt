@@ -3,4 +3,5 @@ Git will be used
 Generate the tests using POM
 Use external csv file for data
 Use allure report
+Define a block for the locators to be used as variables on the pages
 Save generated test file in the tests directory. 

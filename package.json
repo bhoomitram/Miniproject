@@ -10,7 +10,13 @@
     "test": "playwright test",
     "test:headed": "playwright test --headed",
     "allure:generate": "allure generate ./allure-results --clean",
-    "allure:open": "allure open ./allure-results"
+    "allure:open": "allure open ./allure-results",
+    "test:master": "playwright test --grep @master",
+    "test:sanity": "playwright test --grep @sanity",
+    "test:regression": "playwright test --grep @regression",
+    "test:datadriven": "playwright test --grep @datadriven",
+    "test:master:headed": "playwright test --grep @master --headed",
+    "test:sanity:debug": "playwright test --grep @sanity --debug"
   },
   "keywords": [],
   "author": "",
@@ -19,6 +25,7 @@
   "dependencies": {
     "@playwright/test": "^1.57.0",
     "allure-playwright": "^3.4.5",
-    "csv-parse": "^6.1.0"
+    "csv-parse": "^6.1.0",
+    "fs-extra": "^11.3.3"
   }
 }
