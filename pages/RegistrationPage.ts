@@ -51,4 +51,8 @@ export class RegistrationPage {
     await this.page.waitForURL('**/register.htm');
     await this.page.locator(this.welcomeText).waitFor();
   }
+
+  async clickLogout() {
+    await this.page.click('a[href="logout.htm"]');
+  }
 }

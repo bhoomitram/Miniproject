@@ -17,7 +17,8 @@
     "test:regression": "playwright test --grep @regression",
     "test:datadriven": "playwright test --grep @datadriven",
     "test:master:headed": "playwright test --grep @master --headed",
-    "test:sanity:debug": "playwright test --grep @sanity --debug"
+    "test:sanity:debug": "playwright test --grep @sanity --debug",
+    "test:simplereglogin": "playwright test --grep @simplereglogin"
   },
   "keywords": [],
   "author": "",
