@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 import { RegistrationPage } from '../pages/RegistrationPage';
 import { RandomDataUtil } from '../utils/randomDataGenerator';
 
-test.describe('User Registration with Random Data', () => {
+test.describe('User Registration with Random Data @simpleregRandom', () => {
   // Run the test multiple times with different random data
   for (let i = 0; i < 1; i++) {
     test(`Register user with random data - Iteration ${i + 1}`, async ({ page }) => {
