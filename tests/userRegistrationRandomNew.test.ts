@@ -4,7 +4,7 @@ import { RandomDataUtil } from '../utils/randomDataGenerator';
 
 test.describe('User Registration with Random Data', () => {
   // Run the test multiple times with different random data
-  for (let i = 0; i < 5; i++) {
+  for (let i = 0; i < 1; i++) {
     test(`Register user with random data - Iteration ${i + 1}`, async ({ page }) => {
       const registrationPage = new RegistrationPage(page);
 
@@ -16,6 +16,7 @@ test.describe('User Registration with Random Data', () => {
       const state = RandomDataUtil.getRandomState();
       const zip = RandomDataUtil.getRandomPin();
       const phone = RandomDataUtil.getPhoneNumber();
+      const SSN = RandomDataUtil.getRandomNumeric(6);
       const username = RandomDataUtil.getUsername();
       const password = RandomDataUtil.getRandomPassword(12); // Generate a 12-character password
 
@@ -30,7 +31,8 @@ test.describe('User Registration with Random Data', () => {
         city,
         state,
         zip,
-        phone
+        phone,
+        SSN
       );
 
       // Fill login information

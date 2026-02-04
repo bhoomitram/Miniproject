@@ -7,7 +7,7 @@ export class LoginPage {
   private readonly usernameInput = 'input[name="username"]';
   private readonly passwordInput = 'input[name="password"]';
   private readonly loginButton = 'input[type="submit"]';
-  private readonly accountsOverviewTitle = 'h1.title';
+  private readonly accountsOverviewTitle = '#showOverview > h1';
 
   constructor(page: Page) {
     this.page = page;

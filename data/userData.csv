@@ -1,2 +1,2 @@
-firstName,lastName,address,city,state,zip,phone,username,password
-John,Doe,1234 Main St,New York,NY,10001,555-1234,john_doe,SecurePass123
+firstName,lastName,address,city,state,zip,phone,username,password,SSN
+John,Doe,1234 Main St,New York,NY,10001,555-1234,john_doe,SecurePass123,123123

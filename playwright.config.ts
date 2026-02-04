@@ -8,17 +8,18 @@ export default defineConfig({
   //forbidOnly: !!process.env.CI,
   /* Retry on CI only */
   //retries: process.env.CI ? 2 : 0,
-  retries: 1,
+  retries: 0,
   /* Opt out of parallel tests on CI. */
   //workers: process.env.CI ? 1 : undefined,
   workers: 1,
   reporter: [
-    ['html'],
+    ['html', { outputFolder: 'reports/html', open: 'always' }],
     ['allure-playwright', {outputFolder: '../reports/allure-results'}],
   ],
   use: {
     baseURL: 'https://parabank.parasoft.com',
     trace: 'on-first-retry',
+    
     headless: false,
     screenshot: 'only-on-failure',
     video: 'retain-on-failure',

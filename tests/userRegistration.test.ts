@@ -1,10 +1,11 @@
 import { test, expect } from '@playwright/test';
 import { parse } from 'csv-parse/sync';
 import { readFileSync } from 'fs';
+import { join } from 'path';
 import { RegistrationPage } from '../pages/RegistrationPage';
 
 // Load test data from CSV
-const csvData = readFileSync('./data/userData.csv', 'utf8');
+const csvData = readFileSync(join(__dirname, '../data/userData.csv'), 'utf8');
 const records = parse(csvData, { columns: true, skip_empty_lines: true });
 
 test.describe('User Registration', () => {
@@ -23,7 +24,8 @@ test.describe('User Registration', () => {
         userData.city,
         userData.state,
         userData.zip,
-        userData.phone
+        userData.phone,
+        userData.SSN
       );
 
       // Fill login information
