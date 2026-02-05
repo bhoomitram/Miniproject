@@ -8,34 +8,33 @@ import { RegistrationPage } from '../pages/RegistrationPage';
 const csvData = readFileSync(join(__dirname, '../data/userData.csv'), 'utf8');
 const records = parse(csvData, { columns: true, skip_empty_lines: true });
 
-test.describe('User Registration @simplereglogin', () => {
-  records.forEach((userData: any) => {
-    test(`Register user ${userData.username}`, async ({ page }) => {
-      const registrationPage = new RegistrationPage(page);
+test(`Register user @simplereglogin`, async ({ page }) => {
+  records.forEach(async (userData: any) => {
+    const registrationPage = new RegistrationPage(page);
 
-      // Navigate to registration page
-      await registrationPage.goto();
+    // Navigate to registration page
+    await registrationPage.goto();
 
-      // Fill personal information
-      await registrationPage.fillPersonalInfo(
-        userData.firstName,
-        userData.lastName,
-        userData.address,
-        userData.city,
-        userData.state,
-        userData.zip,
-        userData.phone,
-        userData.SSN
-      );
+    // Fill personal information
+    await registrationPage.fillPersonalInfo(
+      userData.firstName,
+      userData.lastName,
+      userData.address,
+      userData.city,
+      userData.state,
+      userData.zip,
+      userData.phone,
+      userData.SSN
+    );
 
-      // Fill login information
-      await registrationPage.fillLoginInfo(userData.username, userData.password);
+    // Fill login information
+    await registrationPage.fillLoginInfo(userData.username, userData.password);
 
-      // Click Register
-      await registrationPage.clickRegister();
+    // Click Register
+    await registrationPage.clickRegister();
 
-      // Verify registration success
-      await registrationPage.verifyRegistrationSuccess();
-    });
+    // Verify registration success
+    await registrationPage.verifyRegistrationSuccess();
   });
 });
+
