@@ -3,7 +3,7 @@ import { RegistrationPage } from '../pages/RegistrationPage';
 import { LoginPage } from '../pages/LoginPage';
 import { RandomDataUtil } from '../utils/randomDataGenerator';
 
-test.describe('User Registration and Login with Random Data @reglogin', () => {
+test.describe('User Registration and Login with Random Data', () => {
   
   test('Register and login user with random credentials - Test 1', async ({ page }) => {
     const userData = {
