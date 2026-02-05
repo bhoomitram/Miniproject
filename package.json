@@ -18,6 +18,7 @@
     "test:datadriven": "playwright test --grep @datadriven",
     "test:master:headed": "playwright test --grep @master --headed",
     "test:sanity:debug": "playwright test --grep @sanity --debug",
+    "test:simpleregrandom": "playwright test --grep @simpleregRandom",
     "test:simplereglogin": "playwright test --grep @simplereglogin"
   },
   "keywords": [],
