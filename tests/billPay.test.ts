@@ -6,7 +6,7 @@ import { BillPayPage } from '../pages/BillPayPage';
 
 // Load test data from CSV
 const csvData = readFileSync('./data/billPayData.csv', 'utf8');
-const records = parse(csvData, { columns: true, skip_empty_lines: true });
+const records = parse(csvData, { columns: true, skip_empty_lines: true, relax_column_count: true });
 
 test.describe('Bill Pay', () => {
   records.forEach((data: any) => {

@@ -8,7 +8,7 @@ import { RegistrationPage } from '../pages/RegistrationPage';
 const csvData = readFileSync(join(__dirname, '../data/userData.csv'), 'utf8');
 const records = parse(csvData, { columns: true, skip_empty_lines: true });
 
-test(`Register user @simplereglogin`, async ({ page }) => {
+test('Register user @simplereglogin', async ({ page }) => {
   records.forEach(async (userData: any) => {
     const registrationPage = new RegistrationPage(page);
 
