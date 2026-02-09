@@ -4,9 +4,22 @@ import { readFileSync } from 'fs';
 import { join } from 'path';
 import { RegistrationPage } from '../pages/RegistrationPage';
 
+interface UserData {
+  firstName: string;
+  lastName: string;
+  address: string;
+  city: string;
+  state: string;
+  zip: string;
+  phone: string;
+  SSN: string;
+  username: string;
+  password: string;
+}
+
 // Load test data from CSV
 const csvData = readFileSync(join(__dirname, '../data/userData.csv'), 'utf8');
-const records = parse(csvData, { columns: true, skip_empty_lines: true });
+const records = parse(csvData, { columns: true, skip_empty_lines: true }) as UserData[];
 
 // Parse ITERATION environment variable
 // Format: "1-3;5;7-9" means iterations 1,2,3,5,7,8,9 (1-based indexing)
