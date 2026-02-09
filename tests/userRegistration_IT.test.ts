@@ -55,35 +55,49 @@ function parseIterations(iterationStr?: string): number[] {
 const iterationParam = process.env.ITERATION;
 const iterationsToRun = parseIterations(iterationParam);
 
-test('Register user @simpleregloginIT', async ({ page }) => {
+test('Register user @simpleregloginIT', async ({ page }, testInfo) => {
   for (const index of iterationsToRun) {
     const userData = records[index];
+    
+    testInfo.attach('Label: ITERATION', {
+      body: `Running iteration ${index + 1}`,
+      contentType: 'text/plain'
+    });
+  
     if (!userData) continue;
     const registrationPage = new RegistrationPage(page);
 
-    // Navigate to registration page
-    await registrationPage.goto();
+    await test.step('Open homepage', async () => {
+       // Navigate to registration page
+      await registrationPage.goto();
+    });
 
-    // Fill personal information
-    await registrationPage.fillPersonalInfo(
-      userData.firstName,
-      userData.lastName,
-      userData.address,
-      userData.city,
-      userData.state,
-      userData.zip,
-      userData.phone,
-      userData.SSN
-    );
+    await test.step('Fill personal information', async () => {
+      // Fill personal information
+      await registrationPage.fillPersonalInfo(
+        userData.firstName,
+        userData.lastName,
+        userData.address,
+        userData.city,
+        userData.state,
+        userData.zip,
+        userData.phone,
+        userData.SSN
+      );
+      });
 
     // Fill login information
-    await registrationPage.fillLoginInfo(userData.username, userData.password);
+    await test.step('Fill login information', async () => {
+      await registrationPage.fillLoginInfo(userData.username, userData.password);
+    });
 
-    // Click Register
-    await registrationPage.clickRegister();
+    await test.step('Register user and Verification', async () => {
+      // Click Register
+      await registrationPage.clickRegister();
 
-    // Verify registration success
-    await registrationPage.verifyRegistrationSuccess();
+      // Verify registration success
+      await registrationPage.verifyRegistrationSuccess();
+    });
   }
 });
 
