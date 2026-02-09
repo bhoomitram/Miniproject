@@ -55,15 +55,12 @@ function parseIterations(iterationStr?: string): number[] {
 const iterationParam = process.env.ITERATION;
 const iterationsToRun = parseIterations(iterationParam);
 
-test('Register user @simpleregloginIT', async ({ page }, testInfo) => {
+test('Register user @simpleregloginIT', async ({ page }) => {
   for (const index of iterationsToRun) {
     const userData = records[index];
     
-    testInfo.attach('Label: ITERATION', {
-      body: `Running iteration ${index + 1}`,
-      contentType: 'text/plain'
-    });
-  
+    console.log(`[ITERATION] ${index + 1}: Running test with user ${userData.username}`);
+
     if (!userData) continue;
     const registrationPage = new RegistrationPage(page);
 
