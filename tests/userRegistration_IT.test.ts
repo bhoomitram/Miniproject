@@ -64,8 +64,8 @@ test('Register user @simpleregloginIT', async ({ page }) => {
     if (!userData) continue;
     const registrationPage = new RegistrationPage(page);
 
-    await test.step(`Iteration ${index + 1}`, async () => {
-      console.log(`[ITERATION] ${index + 1}: Running test with user ${userData.username}`);
+    await test.step('Iteration ${index + 1}', async () => {
+      console.log('[ITERATION] ${index + 1}: Running test with user ${userData.username}');
     });
 
     await test.step('Open homepage', async () => {

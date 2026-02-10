@@ -14,6 +14,10 @@ test('Register user with random data @simpleregrandomIT', async ({ page }) => {
   for (let i = 0; i < i; i++) {
     const registrationPage = new RegistrationPage(page);
 
+    await test.step(`Iteration ${i + 1}`, async () => {
+      console.log(`[ITERATION] ${i + 1}: Running test with user ${firstName} ${lastName} (${username})`);
+    })
+    
     // Generate random data
     const firstName = RandomDataUtil.getFirstName();
     const lastName = RandomDataUtil.getlastName();
