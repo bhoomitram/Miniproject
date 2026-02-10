@@ -13,10 +13,6 @@ const i = (() => {
 test('Register user with random data @simpleregrandomIT', async ({ page }) => {
   for (let i = 0; i < i; i++) {
     const registrationPage = new RegistrationPage(page);
-
-    await test.step(`Iteration ${i + 1}`, async () => {
-      console.log(`[ITERATION] ${i + 1}: Running test with user ${firstName} ${lastName} (${username})`);
-    })
     
     // Generate random data
     const firstName = RandomDataUtil.getFirstName();
@@ -29,6 +25,10 @@ test('Register user with random data @simpleregrandomIT', async ({ page }) => {
     const SSN = RandomDataUtil.getRandomNumeric(6);
     const username = RandomDataUtil.getUsername();
     const password = RandomDataUtil.getRandomPassword(12); // Generate a 12-character password
+
+    await test.step(`[ITERATION] ${i + 1}: Running test with user ${firstName} ${lastName} (${username})`, async () => {
+      console.log(`[ITERATION] ${i + 1}: Running test with user ${firstName} ${lastName} (${username})`);
+    });
 
     // Navigate to registration page
     await registrationPage.goto();
@@ -46,8 +46,9 @@ test('Register user with random data @simpleregrandomIT', async ({ page }) => {
     );
 
     // Fill login information
-    await registrationPage.fillLoginInfo(username, password);
-
+    await test.step('Fill login information', async () => { 
+      await registrationPage.fillLoginInfo(username, password);
+    });
     // Click Register
     await registrationPage.clickRegister();
 

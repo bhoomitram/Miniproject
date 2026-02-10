@@ -57,9 +57,7 @@ const iterationsToRun = parseIterations(iterationParam);
 
 test('Register user @simpleregloginIT', async ({ page }) => {
   for (const index of iterationsToRun) {
-    const userData = records[index];
-    
-    
+    const userData = records[index];   
 
     if (!userData) continue;
     const registrationPage = new RegistrationPage(page);
