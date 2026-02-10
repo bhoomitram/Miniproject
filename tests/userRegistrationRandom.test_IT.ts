@@ -10,7 +10,7 @@ const ITERATION = (() => {
 })();
 
 // Run the test with multiple iterations using ITERATION
-test(`Register user with random data @simpleregrandomIT`, async ({ page }) => {
+test('Register user with random data @simpleregrandomIT', async ({ page }) => {
   for (let i = 0; i < ITERATION; i++) {
     const registrationPage = new RegistrationPage(page);
 
