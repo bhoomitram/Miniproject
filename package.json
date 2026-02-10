@@ -7,6 +7,7 @@
     "test:datadriven": "playwright test --grep @datadriven",
     "test:master:headed": "playwright test --grep @master --headed",
     "test:sanity:debug": "playwright test --grep @sanity --debug",
+    "test:simpleregrandom:iterate": "playwright test --grep @simpleregrandomIT",
     "test:simpleregrandom": "playwright test --grep @simpleregrandom",
     "test:simplereglogin": "playwright test --grep @simplereglogin",
     "test:simpleregloginIT:iterate": "playwright test --grep @simpleregloginIT"
