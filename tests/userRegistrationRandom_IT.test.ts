@@ -10,11 +10,9 @@ const i = (() => {
 })();
 
 // Run the test with multiple iterations using ITERATION
-test('Register user with random data @simpleregITrandom', async ({ page }) => {
+test('Register user with random data @simpleregrandomIT', async ({ page }) => {
   for (let i = 0; i < i; i++) {
     const registrationPage = new RegistrationPage(page);
-
-
 
     // Generate random data
     const firstName = RandomDataUtil.getFirstName();
