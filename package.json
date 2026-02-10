@@ -8,7 +8,7 @@
     "test:master:headed": "playwright test --grep @master --headed",
     "test:sanity:debug": "playwright test --grep @sanity --debug",
     "test:simpleregrandomIT": "playwright test --grep @simpleregrandomIT",
-    "test:simpleregrandom": "playwright test --grep @simpleregrandom",
+    "test:simpleregrandom": "playwright test --grep @simpleranreg",
     "test:simplereglogin": "playwright test --grep @simplereglogin",
     "test:simpleregloginIT": "playwright test --grep @simpleregloginIT"
   },
