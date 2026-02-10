@@ -3,7 +3,7 @@ import { RegistrationPage } from '../pages/RegistrationPage';
 import { RandomDataUtil } from '../utils/randomDataGenerator';
 
 // Read iteration count from environment variable `ITERATION` (defaults to 1)
-const ITERATION = (() => {
+const i = (() => {
   const raw = process.env.ITERATION ?? '1';
   const n = parseInt(raw, 10);
   return Number.isInteger(n) && n > 0 ? n : 1;
@@ -11,8 +11,10 @@ const ITERATION = (() => {
 
 // Run the test with multiple iterations using ITERATION
 test('Register user with random data @simpleregITrandom', async ({ page }) => {
-  for (let i = 0; i < ITERATION; i++) {
+  for (let i = 0; i < i; i++) {
     const registrationPage = new RegistrationPage(page);
+
+
 
     // Generate random data
     const firstName = RandomDataUtil.getFirstName();
@@ -25,6 +27,10 @@ test('Register user with random data @simpleregITrandom', async ({ page }) => {
     const SSN = RandomDataUtil.getRandomNumeric(6);
     const username = RandomDataUtil.getUsername();
     const password = RandomDataUtil.getRandomPassword(12); // Generate a 12-character password
+
+    await test.step(`Iteration ${i + 1}`, async () => {
+      console.log(`[ITERATION] ${i + 1}: Running test with user ${username}`);
+    })
 
     // Navigate to registration page
     await registrationPage.goto();
