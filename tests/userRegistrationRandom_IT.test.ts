@@ -26,8 +26,8 @@ test(`Register user with random data based on N iterations @simpleregrandomIT`, 
     const username = RandomDataUtil.getUsername();
     const password = RandomDataUtil.getRandomPassword(12); // Generate a 12-character password
 
-    await test.step(`Iteration ${i + 1}: Running test with user ${username} (${firstName} ${lastName})`, async () => {
-      console.log(`[ITERATION] ${i + 1}: Running test with user ${username} (${firstName} ${lastName})`);
+    await test.step(`====== Iteration ${i + 1}: Running test with user (${username}) ${firstName} ${lastName}`, async () => {
+      console.log(`[ITERATION] ${i + 1}: Running test with user (${username}) ${firstName} ${lastName}`);
     });
 
     // Navigate to registration page
