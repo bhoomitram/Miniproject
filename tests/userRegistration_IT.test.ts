@@ -3,6 +3,7 @@ import { parse } from 'csv-parse/sync';
 import { readFileSync } from 'fs';
 import { join } from 'path';
 import { RegistrationPage } from '../pages/RegistrationPage';
+import { parseIterations2 } from '../utils/common.ts';
 
 interface UserData {
   firstName: string;
@@ -53,7 +54,8 @@ function parseIterations(iterationStr?: string): number[] {
 }
 
 const iterationParam = process.env.ITERATION;
-const iterationsToRun = parseIterations(iterationParam);
+//const iterationsToRun = parseIterations(iterationParam);
+const iterationsToRun = parseIterations2(iterationParam, records);
 
 test('Register user @simpleregloginIT', async ({ page }) => {
   for (const index of iterationsToRun) {
@@ -62,8 +64,8 @@ test('Register user @simpleregloginIT', async ({ page }) => {
     if (!userData) continue;
     const registrationPage = new RegistrationPage(page);
 
-    await test.step('Iteration ${index + 1}', async () => {
-      console.log('[ITERATION] ${index + 1}: Running test with user ${userData.username}');
+    await test.step(`Iteration ${index + 1}`, async () => {
+      console.log(`[ITERATION] ${index + 1}: Running test with user ${userData.username}`);
     });
 
     await test.step('Open homepage', async () => {

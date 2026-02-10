@@ -1,3 +1,4 @@
+/////////////////////////////////////////////////////////////////////////
 import { test, expect } from '@playwright/test';
 import { RegistrationPage } from '../pages/RegistrationPage';
 import { RandomDataUtil } from '../utils/randomDataGenerator';
@@ -8,6 +9,8 @@ const ITERATIONS = (() => {
   const n = parseInt(raw, 10);
   return Number.isInteger(n) && n > 0 ? n : 1;
 })();
+////////////////////////////////////////////////////////////////////////
+
 
 // Run the test with multiple iterations using ITERATION
 test(`Register user with random data based on N iterations @simpleregrandomIT`, async ({ page }) => {

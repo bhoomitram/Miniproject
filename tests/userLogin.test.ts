@@ -7,7 +7,7 @@ import { LoginPage } from '../pages/LoginPage';
 const csvData = readFileSync('./data/loginData.csv', 'utf8');
 const records = parse(csvData, { columns: true, skip_empty_lines: true });
 
-test.describe('User Login', () => {
+test.describe('User Login' , () => {
   records.forEach((userData: any) => {
     test(`Login user ${userData.username}`, async ({ page }) => {
       const loginPage = new LoginPage(page);
