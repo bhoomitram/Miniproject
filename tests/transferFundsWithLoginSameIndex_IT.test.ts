@@ -26,8 +26,7 @@ const loginRecords = parse(loginCsvData, { columns: true, skip_empty_lines: true
 const transferCsvData = readFileSync(join(__dirname, '../data/transferData_SansLogin.csv'), 'utf8');
 const transferRecords = parse(transferCsvData, { columns: true, skip_empty_lines: true }) as TransferData[];
 
-//const iterationParam = process.env.ITERATION;
-const iterationParam = '1'; // Set to 1 for testing
+const iterationParam = process.env.ITERATION || "1"; // Default to iteration 1 if not specified
 const iterationsToRun = parseIterations2(iterationParam, transferRecords);
 
 test('Transfer Funds With Login @simpletransferloginIT', async ({ page }) => {

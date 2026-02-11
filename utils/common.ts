@@ -14,7 +14,7 @@ export function parseIterations2(iterationStr?: string, records?: any[]): number
 
   const iterations = new Set<number>();
   const parts = iterationStr.split(';');
-  
+
   parts.forEach((part) => {
     part = part.trim();
     if (part.includes('-')) {

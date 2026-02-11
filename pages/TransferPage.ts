@@ -6,8 +6,8 @@ export class TransferPage {
   // Locators
   private readonly transferFundsLink = 'a[href="transfer.htm"]';
   private readonly amountInput = 'input[name="input"]';
-  private readonly fromAccountSelect = 'select[name="fromAccountId"]';
-  private readonly toAccountSelect = 'select[name="toAccountId"]';
+  private readonly fromAccountSelect = 'select[id="fromAccountId"]';
+  private readonly toAccountSelect = 'select[id="toAccountId"]';
   private readonly transferButton = 'input[type="submit"]';
   private readonly transferCompleteText = 'text=Transfer Complete!';
   private readonly errorMessage = 'text=The amount cannot exceed the balance';

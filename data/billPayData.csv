@@ -1,2 +1,2 @@
 Iteration,username,password,payeeName,payeeAddress,payeeAccount,amount,fromAccount,,
-1,johndoe,Pass123!,Electric Company,1234 Main St, New York, NY 10001,987654321,250,12345
+1,john_doe,SecurePass123,Electric Company,1234 Main St, New York, NY 10001,987654321,250,12345
