@@ -18,6 +18,7 @@ interface BillPayData {
   payeeAddress: string;
   payeeAccount: string;
   amount: string;
+  PF_Tel: string;
   fromAccount: string;
 }
 
@@ -82,7 +83,7 @@ test('Bill Pay With Login @billpayIT', async ({ page }) => {
         city,
         state,
         zip,
-        billPayData.PF_Tel, // phone not provided
+        billPayData.PF_Tel, 
         billPayData.payeeAccount
       );
     });
