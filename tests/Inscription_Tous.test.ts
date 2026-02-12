@@ -5,7 +5,7 @@ import { join } from 'path';
 import { RegistrationPage } from '../pages/RegistrationPage';
 
 // Load test data from CSV
-const csvData = readFileSync(join(__dirname, '../data/userData.csv'), 'utf8');
+const csvData = readFileSync(join(__dirname, '../data/DT_Inscription.csv'), 'utf8');
 const records = parse(csvData, { columns: true, skip_empty_lines: true });
 
 test('Register user @simplereglogin', async ({ page }) => {

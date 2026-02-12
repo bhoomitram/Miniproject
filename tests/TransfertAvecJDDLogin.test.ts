@@ -6,47 +6,39 @@ import { LoginPage } from '../pages/LoginPage.ts';
 import { TransferPage } from '../pages/TransferPage.ts';
 import { parseIterations2 } from '../utils/common.ts';
 
-interface LoginData {
-  username: string;
-  password: string;
-}
-
 interface TransferData {
   Iteration: string;
+  username: string;
+  password: string;
   amount: string;
   fromAccount: string;
   toAccount: string;
 }
 
-// Load login data from loginData.csv
-const loginCsvData = readFileSync(join(__dirname, '../data/loginData.csv'), 'utf8');
-const loginRecords = parse(loginCsvData, { columns: true, skip_empty_lines: true }) as LoginData[];
-
-// Load transfer data from transferData_SansLogin.csv
-const transferCsvData = readFileSync(join(__dirname, '../data/transferData_SansLogin.csv'), 'utf8');
-const transferRecords = parse(transferCsvData, { columns: true, skip_empty_lines: true }) as TransferData[];
+// Load test data from transferData.csv
+const csvData = readFileSync(join(__dirname, '../data/DT_Transfert_AvecJDDLogin.csv'), 'utf8');
+const records = parse(csvData, { columns: true, skip_empty_lines: true }) as TransferData[];
 
 const iterationParam = process.env.ITERATION || "1"; // Default to iteration 1 if not specified
-const iterationsToRun = parseIterations2(iterationParam, transferRecords);
+const iterationsToRun = parseIterations2(iterationParam, records);
 
-test('Transfer Funds With Login @simpletransferloginIT', async ({ page }) => {
+test('Transfer Funds @simpletransferIT', async ({ page }) => {
   for (const index of iterationsToRun) {
-    const loginData = loginRecords[index];
-    const transferData = transferRecords[index];
+    const data = records[index];
 
-    if (!loginData || !transferData) continue;
+    if (!data) continue;
     const loginPage = new LoginPage(page);
     const transferPage = new TransferPage(page);
 
     await test.step(`Iteration ${index + 1}`, async () => {
-      console.log(`[ITERATION] ${index + 1}: Running test with user ${loginData.username}`);
+      console.log(`[ITERATION] ${index + 1}: Running test with user ${data.username}`);
     });
 
     await test.step('Login', async () => {
       // Login
       await loginPage.goto();
-      await loginPage.fillUsername(loginData.username);
-      await loginPage.fillPassword(loginData.password);
+      await loginPage.fillUsername(data.username);
+      await loginPage.fillPassword(data.password);
       await loginPage.clickLogin();
       await loginPage.verifyLoginSuccess();
     });
@@ -58,9 +50,9 @@ test('Transfer Funds With Login @simpletransferloginIT', async ({ page }) => {
 
     await test.step('Fill transfer details', async () => {
       // Fill transfer details
-      await transferPage.fillAmount(transferData.amount);
-      await transferPage.selectFromAccount(transferData.fromAccount);
-      await transferPage.selectToAccount(transferData.toAccount);
+      await transferPage.fillAmount(data.amount);
+      await transferPage.selectFromAccount(data.fromAccount);
+      await transferPage.selectToAccount(data.toAccount);
     });
 
     await test.step('Click Transfer', async () => {

@@ -23,7 +23,7 @@ interface BillPayData {
 }
 
 // Load login data from loginData.csv
-const loginCsvData = readFileSync(join(__dirname, '../data/loginData.csv'), 'utf8');
+const loginCsvData = readFileSync(join(__dirname, '../data/DT_login.csv'), 'utf8');
 const loginRecords = parse(loginCsvData, { columns: true, skip_empty_lines: true }) as LoginData[];
 
 // Load bill pay data from billPayData.csv

@@ -20,11 +20,11 @@ interface TransferData {
 }
 
 // Load login data from loginData.csv
-const loginCsvData = readFileSync(join(__dirname, '../data/loginData.csv'), 'utf8');
+const loginCsvData = readFileSync(join(__dirname, '../data/DT_login.csv'), 'utf8');
 const loginRecords = parse(loginCsvData, { columns: true, skip_empty_lines: true }) as LoginData[];
 
 // Load transfer data from transferData_SansLogin.csv
-const transferCsvData = readFileSync(join(__dirname, '../data/transferData_LoginParId.csv'), 'utf8');
+const transferCsvData = readFileSync(join(__dirname, '../data/DT_Transfert_LoginParId.csv'), 'utf8');
 const transferRecords = parse(transferCsvData, { columns: true, skip_empty_lines: true }) as TransferData[];
 
 const iterationParam = process.env.ITERATION || "3"; // Default to iteration 1 if not specified
