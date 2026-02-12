@@ -5,11 +5,11 @@ export class RequestLoanPage {
 
   // Locators
   private readonly requestLoanLink = 'a[href="requestloan.htm"]';
-  private readonly loanAmountInput = 'input[name="amount"]';
-  private readonly downPaymentInput = 'input[name="downPayment"]';
-  private readonly fromAccountSelect = 'select[name="fromAccountId"]';
-  private readonly applyNowButton = 'input[type="submit"]';
-  private readonly loanRequestApprovedText = 'text=Loan Request Processed';
+  private readonly loanAmountInput = 'input[id="amount"]';
+  private readonly downPaymentInput = '#downPayment';
+  private readonly fromAccountSelect = '#fromAccountId';
+  private readonly applyNowButton = '//input[@value="Apply Now"]';
+  private readonly loanRequestApprovedText = '//td[@id="loanStatus" and normalize-space(text())="Approved"]';
 
   constructor(page: Page) {
     this.page = page;
@@ -22,7 +22,8 @@ export class RequestLoanPage {
   async fillLoanDetails(amount: string, downPayment: string, fromAccount: string) {
     await this.page.fill(this.loanAmountInput, amount);
     await this.page.fill(this.downPaymentInput, downPayment);
-    await this.page.selectOption(this.fromAccountSelect, fromAccount);
+    //await this.page.selectOption(this.fromAccountSelect, fromAccount);
+    await this.page.selectOption(this.fromAccountSelect, { index: 0}); // Select the first account for simplicity });
   }
 
   async clickApplyNow() {

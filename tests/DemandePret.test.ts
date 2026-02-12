@@ -15,7 +15,7 @@ interface LoanRequestData {
   Iteration: string;
   IT_Login: string;
   loanAmount: string;
-  loanTerm: string;
+  downPayment: string;
   fromAccount: string;
 }
 
@@ -65,7 +65,7 @@ test('Request Loan With Login @loanrequestIT', async ({ page }) => {
 
     await test.step('Fill loan details', async () => {
       // Fill loan details (assuming down payment is 0)
-      await requestLoanPage.fillLoanDetails(loanData.loanAmount, '0', loanData.fromAccount);
+      await requestLoanPage.fillLoanDetails(loanData.loanAmount, loanData.downPayment, loanData.fromAccount);
     });
 
     await test.step('Click Apply Now', async () => {
