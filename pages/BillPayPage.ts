@@ -15,7 +15,7 @@ export class BillPayPage {
   private readonly verifyAccountInput = 'input[name="verifyAccount"]';
   private readonly amountInput = 'input[name="amount"]';
   private readonly fromAccountSelect = 'select[name="fromAccountId"]';
-  private readonly sendPaymentButton = 'input[type="submit"]';
+  private readonly sendPaymentButton = 'input[value="Send Payment"]';
   private readonly billPaymentCompleteText = 'text=Bill Payment Complete';
 
   constructor(page: Page) {

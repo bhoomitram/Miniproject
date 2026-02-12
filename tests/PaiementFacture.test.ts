@@ -26,7 +26,7 @@ const loginCsvData = readFileSync(join(__dirname, '../data/loginData.csv'), 'utf
 const loginRecords = parse(loginCsvData, { columns: true, skip_empty_lines: true }) as LoginData[];
 
 // Load bill pay data from billPayData.csv
-const billPayCsvData = readFileSync(join(__dirname, '../data/billPayData.csv'), 'utf8');
+const billPayCsvData = readFileSync(join(__dirname, '../data/DT_PaiementFacture.csv'), 'utf8');
 const billPayRecords = parse(billPayCsvData, { columns: true, skip_empty_lines: true, relax_column_count: true }) as BillPayData[];
 
 const iterationParam = process.env.ITERATION || "1"; // Default to 1 if not specified
@@ -73,6 +73,7 @@ test('Bill Pay With Login @billpayIT', async ({ page }) => {
       const stateZip = addressParts[2].split(' ');
       const state = stateZip[0];
       const zip = stateZip[1];
+   
 
       // Fill payee info
       await billPayPage.fillPayeeInfo(
@@ -81,7 +82,7 @@ test('Bill Pay With Login @billpayIT', async ({ page }) => {
         city,
         state,
         zip,
-        '', // phone not provided
+        billPayData.PF_Tel, // phone not provided
         billPayData.payeeAccount
       );
     });
