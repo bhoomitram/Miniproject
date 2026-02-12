@@ -1,4 +1,0 @@
-[ITERATION] 1: Running test with user john_doe
-[ITERATION] 2: Running test with user johnB_doe
-[ITERATION] 3: Running test with user johnC_doe
-[ITERATION] 4: Running test with user johnD_doe

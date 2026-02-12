@@ -39,7 +39,8 @@ export class BillPayPage {
 
   async fillPaymentInfo(amount: string, fromAccount: string) {
     await this.page.fill(this.amountInput, amount);
-    await this.page.selectOption(this.fromAccountSelect, fromAccount);
+    //await this.page.selectOption(this.fromAccountSelect, fromAccount);
+    await this.page.selectOption(this.fromAccountSelect, { index: 0}); // Select the first option to trigger any dynamic changes
   }
 
   async clickSendPayment() {

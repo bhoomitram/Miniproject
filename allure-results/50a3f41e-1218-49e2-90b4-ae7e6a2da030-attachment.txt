@@ -1,1 +1,0 @@
-[ITERATION] 2: Running test with user johnC_doe (IT_Login=3)
