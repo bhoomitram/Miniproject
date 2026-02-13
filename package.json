@@ -4,13 +4,22 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test:datadriven": "playwright test --grep @datadriven",
-    "test:master:headed": "playwright test --grep @master --headed",
-    "test:sanity:debug": "playwright test --grep @sanity --debug",
-    "test:simpleregrandomIT": "playwright test --grep @simpleregrandomIT",
-    "test:simpleregrandom": "playwright test --grep @simpleregran",
-    "test:simplereglogin": "playwright test --grep @simplereglogin",
-    "test:simpleregloginIT": "playwright test --grep @simpleregloginIT"
+    "test:Smoke:headed": "playwright test --grep @Smoke --headed",
+    "test:TNR:debug": "playwright test --grep @TNR --debug",
+
+    "test:EngToutesIT": "playwright test --grep @EngToutesIT",
+    "test:Enregistrement": "playwright test --grep @Enregistrement",
+    "test:EnregRandom": "playwright test --grep @EnregRandom",
+
+    "test:TransfertJDDLogin": "playwright test --grep @TransfertJDDLogin",
+    "test:TransfertAvecIndex": "playwright test --grep @TransfertAvecIndex",
+    "test:TransfertXLogin": "playwright test --grep @TransfertXLogin",
+    "test:DemandePret": "playwright test --grep @DemandePret",
+    "test:TransfertCompte": "playwright test --grep @TransfertCompte",
+    
+    "test:simplelogin": "playwright test --grep @simplelogin",
+    "test:Smoke": "playwright test --grep @Smoke",
+    "test:TNR": "playwright test --grep @TNR"
   },
   "keywords": [],
   "author": "",
