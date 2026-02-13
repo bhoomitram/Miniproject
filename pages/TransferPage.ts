@@ -12,6 +12,8 @@ export class TransferPage {
   private readonly transferCompleteText = 'text=Transfer Complete!';
   private readonly errorMessage = 'text=The amount cannot exceed the balance';
   private readonly accountsOverviewLink = 'a[href="overview.htm"]';
+  private readonly OpenNewAccountLink = 'a[href="openaccount.htm"]';
+  private readonly OpenNewAccountButton = 'input[type="button"][value="Open New Account"]';
 
   constructor(page: Page) {
     this.page = page;
@@ -32,7 +34,7 @@ export class TransferPage {
 
   async selectToAccount(toAccount: string) {
     //await this.page.selectOption(this.toAccountSelect, toAccount);
-    await this.page.selectOption(this.toAccountSelect, { index: 0 }); // Select the first option to trigger any dynamic changes
+    await this.page.selectOption(this.toAccountSelect, { index: 1 }); // Select the first option to trigger any dynamic changes
   }
 
   async clickTransfer() {
@@ -51,9 +53,12 @@ export class TransferPage {
     await this.page.click(this.accountsOverviewLink);
   }
 
-  async getAccountBalance(accountNumber: string): Promise<string> {
-    // Assuming the balance is in a table cell next to the account number
-    const balanceLocator = this.page.locator(`td:has-text("${accountNumber}") + td`);
-    return await balanceLocator.textContent() || '';
+  async gotoOpenNewAccountAndOpen() {
+    await this.page.click(this.OpenNewAccountLink);
+    await this.page.click(this.OpenNewAccountButton);
+    await this.page.locator('text=Account Opened').waitFor();
   }
+
+
+  
 }

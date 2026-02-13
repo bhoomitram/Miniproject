@@ -22,7 +22,7 @@ const records = parse(csvData, { columns: true, skip_empty_lines: true }) as Tra
 const iterationParam = process.env.ITERATION || "1"; // Default to iteration 1 if not specified
 const iterationsToRun = parseIterations2(iterationParam, records);
 
-test('Transfer Funds @simpletransferIT', async ({ page }) => {
+test('Transfert avec JDD Login même fichier @TransfertJDDLogin', async ({ page }) => {
   for (const index of iterationsToRun) {
     const data = records[index];
 

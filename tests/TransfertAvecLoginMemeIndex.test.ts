@@ -29,7 +29,7 @@ const transferRecords = parse(transferCsvData, { columns: true, skip_empty_lines
 const iterationParam = process.env.ITERATION || "1"; // Default to iteration 1 if not specified
 const iterationsToRun = parseIterations2(iterationParam, transferRecords);
 
-test('Transfer Funds With Login @simpletransferloginIT', async ({ page }) => {
+test('Transfert avec Login même index @TransfertAvecIndex', async ({ page }) => {
   for (const index of iterationsToRun) {
     const loginData = loginRecords[index];
     const transferData = transferRecords[index];

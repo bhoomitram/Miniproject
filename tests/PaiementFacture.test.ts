@@ -33,7 +33,7 @@ const billPayRecords = parse(billPayCsvData, { columns: true, skip_empty_lines: 
 const iterationParam = process.env.ITERATION || "1"; // Default to 1 if not specified
 const iterationsToRun = parseIterations2(iterationParam, billPayRecords);
 
-test('Bill Pay With Login @billpayIT', async ({ page }) => {
+test('PaimentFacture @PaiementFacture @TNR', async ({ page }) => {
   for (const index of iterationsToRun) {
     const billPayData = billPayRecords[index];
 

@@ -30,7 +30,7 @@ const loanRecords = parse(loanCsvData, { columns: true, skip_empty_lines: true }
 const iterationParam = process.env.ITERATION || "1"; // Default to 1 if not specified
 const iterationsToRun = parseIterations2(iterationParam, loanRecords);
 
-test('Request Loan With Login @loanrequestIT', async ({ page }) => {
+test('Demande de prêt @DemandePret @Smoke', async ({ page }) => {
   for (const index of iterationsToRun) {
     const loanData = loanRecords[index];
 

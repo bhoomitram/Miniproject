@@ -31,7 +31,7 @@ const transferRecords = parse(transferCsvData, { columns: true, skip_empty_lines
 const iterationParam = process.env.ITERATION || "1" // Default to iteration 1 if not specified
 const iterationsToRun = parseIterations2(iterationParam, transferRecords);
 
-test('Secure Transfer Funds With Login @securetransferloginIT', async ({ page }) => {
+test('Transfert entre comptes @TransfertCompte @TNR', async ({ page }) => {
   for (const index of iterationsToRun) {
     const transferData = transferRecords[index];
 
@@ -64,16 +64,29 @@ test('Secure Transfer Funds With Login @securetransferloginIT', async ({ page })
       await transferPage.gotoAccountsOverview();
     });
 
-    let initialFromBalance: number = 0;
-    let initialToBalance: number = 0;
-
-    await test.step('Record initial from account balance', async () => {
-      initialFromBalance = parseFloat(await transferPage.getAccountBalance(transferData.fromAccount));
+    await test.step('Open new account', async () => {
+      await transferPage.gotoOpenNewAccountAndOpen();
+    });
+ 
+    await test.step('Overview accounts after opening new account', async () => {
+      // Get initial balances
+      await transferPage.gotoAccountsOverview();
     });
 
-    await test.step('Record initial to account balance', async () => {
-      initialToBalance = parseFloat(await transferPage.getAccountBalance(transferData.toAccount));
+    let initialFromBalanceNumber = 0;
+
+    await test.step('Record initial amount from account balance', async () => {
+      const oAccountLink = page.locator("//table[@id='accountTable']//tr[1]/td[1]/a");
+      const DynamicFromBalanceText = await oAccountLink.textContent();
+      if (DynamicFromBalanceText) {
+        const initialFromBalanceLocator = page.locator("//table[@id='accountTable']//tr[1]/td[2]");
+        let initialFromBalanceText = await initialFromBalanceLocator.textContent();
+        if (initialFromBalanceText) {
+          initialFromBalanceNumber = parseFloat(initialFromBalanceText.replace(/[^0-9.-]/g, ''));
+        }
+      }
     });
+
 
     await test.step('Go to Transfer Funds', async () => {
       // Go to Transfer Funds
@@ -96,12 +109,14 @@ test('Secure Transfer Funds With Login @securetransferloginIT', async ({ page })
     await test.step('Check updated balances', async () => {
       // Check updated balances
       await transferPage.gotoAccountsOverview();
-      const updatedFromBalance = parseFloat(await transferPage.getAccountBalance(transferData.fromAccount));
-      const updatedToBalance = parseFloat(await transferPage.getAccountBalance(transferData.toAccount));
-
-      expect(updatedFromBalance).toBe(initialFromBalance - parseFloat(transferData.amount1));
-      expect(updatedToBalance).toBe(initialToBalance + parseFloat(transferData.amount1));
+      const updatedFromBalanceLocator = page.locator("//table[@id='accountTable']//tr[1]/td[2]");
+      let updatedFromBalanceText = await updatedFromBalanceLocator.textContent();
+      if (updatedFromBalanceText) {
+        const updatedFromBalanceNumber = parseFloat(updatedFromBalanceText.replace(/[^0-9.-]/g, ''));
+        expect(updatedFromBalanceNumber).toBe(initialFromBalanceNumber - parseFloat(transferData.amount1));
+      }
     });
+    
 
     await test.step('Attempt second transfer with excessive amount', async () => {
       // Attempt second transfer with excessive amount

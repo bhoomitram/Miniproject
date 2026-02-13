@@ -14,7 +14,7 @@ const ITERATIONS = (() => {
 
 
 // Run the test with multiple iterations using ITERATION
-test(`Register user with random data based on N iterations @simpleregrandomIT`, async ({ page }) => {
+test(`Register user with random data based on N iterations @EnregRandom`, async ({ page }) => {
   for (let i = 0; i < ITERATIONS; i++) {
     const registrationPage = new RegistrationPage(page);
     const loginPage = new LoginPage(page);

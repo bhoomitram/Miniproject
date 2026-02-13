@@ -4,6 +4,7 @@ import { readFileSync } from 'fs';
 import { join } from 'path';
 import { RegistrationPage } from '../pages/RegistrationPage.ts';
 import { parseIterations2 } from '../utils/common.ts';
+import { LoginPage } from '../pages/LoginPage.ts';
 
 interface UserData {
   firstName: string;
@@ -25,12 +26,14 @@ const records = parse(csvData, { columns: true, skip_empty_lines: true }) as Use
 const iterationParam = process.env.ITERATION || "1"; // Default to iteration 1 if not specified
 const iterationsToRun = parseIterations2(iterationParam, records);
 
-test('Register user @simplereg', async ({ page }) => {
+test('Register user @Enregistrement @Smoke', async ({ page }) => {
   for (const index of iterationsToRun) {
     const userData = records[index];   
 
     if (!userData) continue;
     const registrationPage = new RegistrationPage(page);
+    const loginPage = new LoginPage(page);
+    
 
     await test.step(`Iteration ${index + 1}`, async () => {
       console.log(`[ITERATION] ${index + 1}: Running test with user ${userData.username}`);
@@ -67,6 +70,16 @@ test('Register user @simplereg', async ({ page }) => {
       // Verify registration success
       await registrationPage.verifyRegistrationSuccess();
     });
+
+        // Log out after registration
+    await registrationPage.clickLogout();
+
+    // === LOGIN PHASE ===
+    await loginPage.goto();
+    await loginPage.fillUsername(userData.username);
+    await loginPage.fillPassword(userData.password);
+    await loginPage.clickLogin();
+    await loginPage.verifyLoginSuccess();
   }
 });
 
