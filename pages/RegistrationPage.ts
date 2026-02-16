@@ -23,7 +23,9 @@ export class RegistrationPage {
   }
 
   async goto() {
-    await this.page.goto('/parabank/register.htm');
+    await this.page.goto('/parabank/register.htm', {
+    timeout: 60000 // 60 seconds
+    });
   }
 
   async fillPersonalInfo(firstName: string, lastName: string, address: string, city: string, state: string, zip: string, phone: string, SSN: string) {

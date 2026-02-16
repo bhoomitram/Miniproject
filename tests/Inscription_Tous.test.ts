@@ -12,8 +12,14 @@ test('Register user @EngToutesIT', async ({ page }) => {
   records.forEach(async (userData: any) => {
     const registrationPage = new RegistrationPage(page);
 
-    // Navigate to registration page
-    await registrationPage.goto();
+    await test.step(`Iteration ${records.indexOf(userData) + 1}`, async () => {
+      console.log(`[ITERATION] ${records.indexOf(userData) + 1}: Running test with user ${userData.username}`);
+    });
+
+    await test.step('Open homepage', async () => {
+       // Navigate to registration page
+      await registrationPage.goto();
+    });
 
     // Fill personal information
     await registrationPage.fillPersonalInfo(
