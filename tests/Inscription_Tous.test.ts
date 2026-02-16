@@ -2,19 +2,32 @@ import { test, expect } from '@playwright/test';
 import { parse } from 'csv-parse/sync';
 import { readFileSync } from 'fs';
 import { join } from 'path';
-import { RegistrationPage } from '../pages/RegistrationPage';
+import { RegistrationPage } from '../pages/RegistrationPage.ts';
+
+interface UserData {
+  firstName: string;
+  lastName: string;
+  address: string;
+  city: string;
+  state: string;
+  zip: string;
+  phone: string;
+  SSN: string;
+  username: string;
+  password: string;
+}
 
 // Load test data from CSV
 const csvData = readFileSync(join(__dirname, '../data/DT_Inscription.csv'), 'utf8');
-const records = parse(csvData, { columns: true, skip_empty_lines: true });
+const records = parse(csvData, { columns: true, skip_empty_lines: true }) as UserData[];
 
 test('Register user @EngToutesIT', async ({ page }) => {
-  records.forEach(async (userData: any) => {
+  for (const userData of records) {
     const registrationPage = new RegistrationPage(page);
 
-    await test.step(`Iteration ${records.indexOf(userData) + 1}`, async () => {
-      console.log(`[ITERATION] ${records.indexOf(userData) + 1}: Running test with user ${userData.username}`);
-    });
+    //await test.step(`Iteration ${records.indexOf(userData) + 1}`, async () => {
+    //  console.log(`[ITERATION] ${records.indexOf(userData) + 1}: Running test with user ${userData.username}`);
+    //});
 
     await test.step('Open homepage', async () => {
        // Navigate to registration page
@@ -41,8 +54,6 @@ test('Register user @EngToutesIT', async ({ page }) => {
 
     // Verify registration success
     await registrationPage.verifyRegistrationSuccess();
-
-
-  });
+  }
 });
 
