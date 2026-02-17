@@ -48,5 +48,11 @@ test('User Login @simplelogin', async ({ page }) => {
       // Verify login success
       await loginPage.verifyLoginSuccess();
     });
+
+    await test.step('Logout', async () => {
+      // Click Logout
+      await loginPage.clickLogout();
+    });
+
   }
 });

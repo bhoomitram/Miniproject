@@ -7,6 +7,7 @@ export class LoginPage {
   private readonly usernameInput = 'input[name="username"]';
   private readonly passwordInput = 'input[name="password"]';
   private readonly loginButton = 'input[type="submit"]';
+  private readonly logoutButton = 'a[href="logout.htm"]';
   private readonly accountsOverviewTitle = '#showOverview > h1';
 
   constructor(page: Page) {
@@ -14,7 +15,9 @@ export class LoginPage {
   }
 
   async goto() {
-    await this.page.goto('/parabank/index.htm');
+    await this.page.goto('/parabank/index.htm', {
+    timeout: 60000 // 60 seconds
+    });
   }
 
   async fillUsername(username: string) {
@@ -32,5 +35,9 @@ export class LoginPage {
   async verifyLoginSuccess() {
     await this.page.waitForURL('**/overview.htm');
     await this.page.locator(this.accountsOverviewTitle).waitFor();
+  }
+
+  async clickLogout() {
+    await this.page.click(this.logoutButton);
   }
 }
