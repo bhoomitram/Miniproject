@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 import { parse } from 'csv-parse/sync';
 import { readFileSync } from 'fs';
-import { join } from 'path';
+import { join, resolve } from 'path';
 import { LoginPage } from '../pages/LoginPage.ts';
 import { parseIterations2 } from '../utils/common.ts';
 
@@ -11,10 +11,10 @@ interface LoginData {
 }
 
 // Load test data from loginData.csv
-const csvData = readFileSync(join(__dirname, '../data/DT_Login.csv'), 'utf8');
+const csvData = readFileSync(resolve(__dirname, '../data/DT_Login.csv'), 'utf8');
 const records = parse(csvData, { columns: true, skip_empty_lines: true }) as LoginData[];
 
-const iterationParam = process.env.ITERATION || "1"; // Default to iteration 1 if not specified
+const iterationParam = process.env.ITERATION || "1-4"; // Default to iteration 1 if not specified
 const iterationsToRun = parseIterations2(iterationParam, records);
 
 test('User Login @simplelogin', async ({ page }) => {
