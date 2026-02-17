@@ -27,7 +27,7 @@ const loginRecords = parse(loginCsvData, { columns: true, skip_empty_lines: true
 const transferCsvData = readFileSync(join(__dirname, '../data/DT_Transfert_LoginParId.csv'), 'utf8');
 const transferRecords = parse(transferCsvData, { columns: true, skip_empty_lines: true }) as TransferData[];
 
-const iterationParam = process.env.ITERATION || "3"; // Default to iteration 1 if not specified
+const iterationParam = process.env.ITERATION || "2"; // Default to iteration 1 if not specified
 const iterationsToRun = parseIterations2(iterationParam, transferRecords);
 
 test('Transfert avec X Login @TransfertXLogin', async ({ page }) => {
