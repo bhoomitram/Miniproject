@@ -23,7 +23,7 @@ interface UserData {
 const csvData = readFileSync(join(__dirname, '../data/DT_Inscription.csv'), 'utf8');
 const records = parse(csvData, { columns: true, skip_empty_lines: true }) as UserData[];
 
-const iterationParam = process.env.ITERATION || "1"; // Default to iteration 1 if not specified
+const iterationParam = process.env.ITERATION || "1-4"; // Default to iteration 1 if not specified
 const iterationsToRun = parseIterations2(iterationParam, records);
 
 test('Register user @Enregistrement @Smoke', async ({ page }) => {

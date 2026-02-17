@@ -37,6 +37,11 @@ export class TransferPage {
     await this.page.selectOption(this.toAccountSelect, { index: 1 }); // Select the first option to trigger any dynamic changes
   }
 
+  async selectToAccount0(toAccount: string) {
+    //await this.page.selectOption(this.toAccountSelect, toAccount);
+    await this.page.selectOption(this.toAccountSelect, { index: 0 }); // Select the first option to trigger any dynamic changes
+  }
+
   async clickTransfer() {
     await this.page.click(this.transferButton);
   }
