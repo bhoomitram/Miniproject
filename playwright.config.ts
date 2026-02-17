@@ -23,8 +23,8 @@ export default defineConfig({
     headless: false,
     //screenshot: 'only-on-failure',
     screenshot: 'on',
-    //video: 'retain-on-failure',
-    video: 'on',
+    video: 'retain-on-failure',
+    //video: 'on',
     viewport: { width: 1280, height: 720 },
   },
   projects: [
