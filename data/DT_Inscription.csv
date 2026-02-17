@@ -3,3 +3,7 @@ Iteration,firstName,lastName,address,city,state,zip,phone,username,password,SSN
 2,JohnB,DoeB,1234 Main St,New York,NY,10001,555-1234,johnB_doe,SecurePass123,123123
 3,JohnC,DoeC,1234 Main St,New York,NY,10001,555-1234,johnC_doe,SecurePass123,123123
 4,JohnD,DoeD,1234 Main St,New York,NY,10001,555-1234,johnD_doe,SecurePass123,123123
+5,JohnE,DoEE,1234 Main St,New York,NY,10001,555-1234,johnE_doe,SecurePass123,123123
+6,JohnF,DoeF,1234 Main St,New York,NY,10001,555-1234,johnF_doe,SecurePass123,123123
+7,JohnG,DoeG,1234 Main St,New York,NY,10001,555-1234,johnG_doe,SecurePass123,123123
+8,JohnH,DoeH,1234 Main St,New York,NY,10001,555-1234,johnH_doe,SecurePass123,123123
